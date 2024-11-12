@@ -16,8 +16,8 @@ const options = {
   inflate: true,
   limit: '100000kb',
   type: '*/*',
-  key: fs.readFileSync(path.join(__dirname, config.getSSLKeyPath())),
-  cert: fs.readFileSync(path.join(__dirname, config.getSSLCertPath())),
+  key: config.getTLSEnabled() ? fs.readFileSync(path.join(__dirname, config.getTLSKeyPath())) : undefined,
+  cert: config.getTLSEnabled() ? fs.readFileSync(path.join(__dirname, config.getTLSCertPath())) : undefined,
 };
 
 const proxyPreparations = async () => {
@@ -54,9 +54,11 @@ const start = async () => {
   http.createServer(options, app).listen(proxyHttpPort, () => {
     console.log(`HTTP Proxy Listening on ${proxyHttpPort}`);
   });
-  https.createServer(options, app).listen(proxyHttpsPort, () => {
-    console.log(`HTTPS Proxy Listening on ${proxyHttpsPort}`);
-  });
+  if (config.getTLSEnabled()) {
+    https.createServer(options, app).listen(proxyHttpsPort, () => {
+      console.log(`HTTPS Proxy Listening on ${proxyHttpsPort}`);
+    });
+  }
 
   return app;
 };
