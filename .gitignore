@@ -263,7 +263,9 @@ yarn-error.log*
 
 # Docusaurus website
 website/build
-website/.docusaurusHELP.md
+website/.docusaurus
+
+HELP.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar

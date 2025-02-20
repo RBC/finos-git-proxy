@@ -14,6 +14,10 @@
     "prettier",
     "plugin:json/recommended"
   ],
+  "ignorePatterns": [
+    "src/main/**",
+    "src/test/**"
+  ],
   "overrides": [],
   "parserOptions": {
     "requireConfigFile": false,
