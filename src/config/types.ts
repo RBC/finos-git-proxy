@@ -7,8 +7,9 @@ export interface UserSettings {
   api: Record<string, any>;
   cookieSecret: string;
   sessionMaxAgeHours: number;
-  sslKeyPemPath?: string; // Optional (not in config.schema.json)
-  sslCertPemPath?: string; // Optional (not in config.schema.json)
+  tlsKeyPemPath?: string;
+  tlsCertPemPath?: string;
+  tlsEnabled?: boolean;
   plugins: any[];
   commitConfig: Record<string, unknown>;
   attestationConfig: Record<string, unknown>;
